@@ -19,16 +19,6 @@ target/
 .idea/
 *.iml
 transaction-logs/*
-back-office-front/node_modules
-back-office-front/dist
-back-office-front/.tmp
-back-office-front/.sass-cache
-back-office-front/bower_components
-back-office-front/*.war
-back-office-front/.bowerrc
-back-office-front/.editorconfig
-back-office-front/.jscsrc
-back-office-front/.jshintrc
 config/*/loc/config.properties
 nb-configuration.xml
 nbactions.xml
@@ -36,3 +26,15 @@ config/*/loc/config.properties
 nb-configuration.xml
 nbactions.xml
 
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
