@@ -14,25 +14,15 @@ import java.util.Properties;
  * @author ernesto
  */
 public class Application{
-	static final Properties APP_PROPERTIES;
-	
-	static{
-		APP_PROPERTIES = new Properties();
-		
-		try(Reader input = new BufferedReader(new FileReader(System.getProperty("application.properties")))){
-			APP_PROPERTIES.load(input);
-		}catch(IOException ex){
-			ex.printStackTrace(System.err);
-		}
-	}
 
 	public static void main(String[] args) throws UnknownHostException, IOException, ClassNotFoundException, InterruptedException, InvalidKeyException{
+		Properties appProperties = getPropiertes();
 		
 		ClientApp client = new ClientApp(
-				APP_PROPERTIES.getProperty("cypher.algorithm"),
-				APP_PROPERTIES.getProperty("cypher.key.public.path"),
-				APP_PROPERTIES.getProperty("server.host"),
-				Integer.parseInt(APP_PROPERTIES.getProperty("server.port")));
+				appProperties.getProperty("cypher.algorithm"),
+				appProperties.getProperty("cypher.key.public.path"),
+				appProperties.getProperty("server.host"),
+				Integer.parseInt(appProperties.getProperty("server.port")));
 		
 		String[] messages = {"¡Hola!", "¿Ernesto?", "¿hermano", "de", "María", "?", "exit"};
 		
@@ -42,4 +32,14 @@ public class Application{
 		}
 	}
 	
+	private static Properties getPropiertes() throws IOException{
+		Properties appProperties = new Properties();
+		try(Reader input = new BufferedReader(new FileReader(System.getProperty("application.properties")))){
+			appProperties.load(input);
+		}catch(IOException ex){
+			throw new IOException("Check if the property application.properties is set to the path of the client properties", ex);
+		}
+		
+		return appProperties;
+	}
 }
